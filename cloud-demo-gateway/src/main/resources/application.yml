@@ -4,22 +4,30 @@ eureka:
       defaultZone: http://localhost:8000/eureka
   instance:
     hostname: localhost
-    instance-id: gateway:9000
+    instance-id: ${spring.application.name}:${server.port}
     prefer-ip-address: true
-server:
-  port: 9000
 spring:
   application:
-    name: api-gateway
+    name: gateway
 
 zuul:
-  ignored-services: '*'
+#  忽略某个服务的路由
+  ignored-services: 'provider'
   routes:
     #标识你服务的名字，这里可以自己定义，一般方便和规范来讲还是跟自己服务的名字一样
-    eureka-provider:
+    provider:
       #服务映射的路径，通过这路径就可以从外部访问你的服务了，目的是为了不爆露你机器的IP，面向服务的路由了，给你选一个可用的出来，
-      path: /eureka-provider-demo/**
+      path: /provider/**
       #这里一定要是你Eureka注册中心的服务的名称，是所以这里配置serviceId因为跟eureka结合了，如果单独使用zuul,那么就必须写自己机器的IP了，
       #如url:http://localhost:8080/  这样的不好就是写死IP了，万一这IP挂了，这高可用性，服务注册那套东西就用不起来了
-      serviceId: eureka-provider
-  prefix: '/api'
+#      serviceId: provider
+server:
+  port: 8080
+#  prefix: '/api'
+
+#查看zuul的监控界面，开发时配置为*，上线不要配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

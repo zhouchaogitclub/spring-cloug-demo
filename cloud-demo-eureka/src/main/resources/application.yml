@@ -1,16 +1,23 @@
 eureka:
   client:
-    #标识当前服务是否需要从eureka服务中获取eureka信息
+    #单机环境，不从eureka上拉取信息
     fetch-registry: false
-    #不识别自己
+    #单机，不注册进入eureka
     register-with-eureka: false
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
   instance:
     #eureka服务主机名称
     hostname: localhost
+#    关闭自我保护机制
+  server:
+    enable-self-preservation: false
 server:
   port: 8000
 spring:
   application:
     name: eureka-service
+#  security:
+#    user:
+#      name: root
+#      password: root

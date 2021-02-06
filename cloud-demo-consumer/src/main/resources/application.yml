@@ -4,10 +4,14 @@ eureka:
       defaultZone: http://localhost:8000/eureka
   instance:
     hostname: localhost
-    instance-id: eureka-consumer:8004
+    instance-id: ${spring.application.name}:${server.port}
     prefer-ip-address: true
 server:
   port: 8004
 spring:
   application:
-    name: eureka-consumer
+    name: consumer
+#feign和hystrix组件整合
+feign:
+  hystrix:
+    enabled: true

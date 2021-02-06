@@ -13,11 +13,7 @@
         <module>cloud-demo-provider</module>
         <module>cloud-demo-consumer</module>
         <module>cloud-demo-eureka</module>
-        <module>cloud-demo-provider2</module>
-        <module>cloud-demo-provider3</module>
-        <module>cloud-demo-provider-hystrix</module>
-        <module>cloud-demo-eureka2</module>
-        <module>clouddemogateway</module>
+        <module>cloud-demo-gateway</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -35,7 +31,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Greenwich.SR1</version>
+                <version>Greenwich.SR6</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -73,12 +69,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

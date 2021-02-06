@@ -1,13 +1,14 @@
 eureka:
   client:
     service-url:
+#      eureka服务端开启验证之后注入 需要用户名和密码
       defaultZone: http://localhost:8000/eureka
   instance:
     hostname: localhost
-    instance-id: eureka-provider:8081
+    instance-id: ${spring.application.name}:${server.port}
     prefer-ip-address: true
 server:
-  port: 8081
+  port: 8082
 spring:
   application:
-    name: eureka-provider
+    name: provider
